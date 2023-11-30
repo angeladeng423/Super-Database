@@ -29,8 +29,13 @@ router.get('/', async (req, res) => {
     }
 })
 
+// 
+
+
+
+// LAB 3 API BELOW:
+
 // list specific hero
-// used
 router.get('/heroID/:id', async (req, res) => {
     try{
         const hero = await Heroes.find({id: req.params.id})
@@ -61,7 +66,6 @@ router.get('/publisher', async(req, res) => {
 })
 
 // lists all the matches for a given property
-// used
 router.get('/heroList/:field/:pattern', async (req, res) => {
     try{
         const field = req.params.field;

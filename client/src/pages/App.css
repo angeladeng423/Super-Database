@@ -4,4 +4,11 @@
     margin: 2rem;
     padding: 1rem;
     outline: black 1px solid;
+    background-color: white;
+}
+
+#styling{
+    background-color: #D4DED3;
+    margin: 2rem;
+    padding-bottom: 1rem;
 }

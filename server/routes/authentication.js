@@ -18,11 +18,11 @@ router.get('/posts', (req, res) => {
     res.json(posts)
 })
 
-app.post('login', (req, res) => {
+router.post('login', (req, res) => {
     // later
 
     const username = req.body.username
-    
+
 })
 
 module.exports = router

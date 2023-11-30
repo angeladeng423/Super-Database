@@ -1,0 +1,38 @@
+.centering-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#login-container{
+    margin: 3rem;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+}
+
+#user-input, #pass-input, #email-input{
+    border-radius: 14px;
+    border: 1.5px solid;
+    height: 1.5rem;
+    padding-left: 0.7rem;
+    min-width: 50vw;
+    font-family: 'Inter', sans-serif;;
+}
+
+#user-input:focus, #pass-input:focus{
+    outline: none;
+}
+
+#submit-btn{
+    margin-top: 1.5rem;
+    height: 1.5rem;
+    width: 5rem;
+    border-radius: 14px;
+    border: 0px;
+    background-color: #D4DED3;
+}
+
+#submit-btn:hover{
+    background-color: #CFD6C6;
+}

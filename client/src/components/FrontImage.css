@@ -23,7 +23,7 @@
   }
 
 #image-container img {
-    animation: image-slide 4s cubic-bezier(.5,.5,0,1);
+    animation: image-slide 3s cubic-bezier(.5,.5,0,1);
     animation-fill-mode: forwards;
   }
 
@@ -79,9 +79,9 @@
     bottom: 0;
     right: 0;
     width: 100%;
-    background: white;
-    -webkit-animation: text-slide 4s cubic-bezier(.5,.5,0,1);
-    animation: text-slide 4s cubic-bezier(.5,.5,0,1);
+    background-color: #D4DED3;
+    -webkit-animation: text-slide 3s cubic-bezier(.5,.5,0,1);
+    animation: text-slide 3.5s cubic-bezier(.5,.5,0,1);
     animation-fill-mode: forwards;
     -webkit-animation-fill-mode: forwards;
   }

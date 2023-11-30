@@ -10,8 +10,13 @@ p{
     font-family: 'Inter', sans-serif;
 }
 
-#login-text, #search-text, #view-public-lists{
+#login-text, #homepage-link, #search-text, #view-public-lists{
     font-size: 1rem;
     font-weight: 400;
     padding-left: 3rem;
+    cursor: pointer;
+}
+
+#login-text:hover, #homepage-link:hover, #search-text:hover, #view-public-lists:hover {
+    color: darkgreen;
 }

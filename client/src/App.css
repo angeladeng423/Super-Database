@@ -1,0 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;800&display=swap');
+
+#about-paragraph{
+    margin: 2rem;
+    padding: 1rem;
+    outline: black 1px solid;
+}

@@ -1,0 +1,17 @@
+#unauth-navbar{
+    display:flex;
+    flex-direction: row;
+    background-color: #D4DED3;
+    height: 15vh;
+    align-items: center;
+}
+
+p{
+    font-family: 'Inter', sans-serif;
+}
+
+#login-text, #search-text, #view-public-lists{
+    font-size: 1rem;
+    font-weight: 400;
+    padding-left: 3rem;
+}

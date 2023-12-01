@@ -29,7 +29,58 @@ router.get('/', async (req, res) => {
     }
 })
 
-// 
+// search mechanisms for heroes
+// should be able to retrieve heroes w/ any combo of name, race, power, or publisher
+router.get('/heroSearch/:race/:name/:power/:publisher', async (req, res) => {
+    try {
+        const { race, name, power, publisher } = req.params;
+        const uppercasePower = power.charAt(0).toUpperCase() + power.slice(1);
+
+        const query = {};
+
+        if (race !== "null") {
+            query.Race = new RegExp(race, 'i');
+        }
+        if (name !== "null") {
+            query.name = new RegExp(name, 'i');
+        }
+        if (publisher !== "null") {
+            query.Publisher = new RegExp(publisher, 'i');
+        }
+
+        // logic -> find a list of heroNames w/ the power from the api
+        
+        const result = await Heroes.find(query).lean();
+        const powerResult = await Power.find({})
+
+        let heroNamesWPowers = []
+        checkPower(powerResult)
+        
+        function checkPower(powerResult){
+            for(let i = 0; i < powerResult.length; i++){
+                if (powerResult[i][uppercasePower] === 'True'){
+                    heroNamesWPowers = [...heroNamesWPowers, powerResult[i]]
+                }
+            }
+        }
+
+        let filteredHeroes = []
+        filterByPower(result)
+
+        function filterByPower(result){
+            for(let i = 0; i < result.length; i++){
+                filteredHeroes = [...filteredHeroes, result[i]]
+            }
+        }
+
+        res.json(filteredHeroes);
+
+    } catch (err) {
+        console.error('Error searching heroes:', err);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 
 
 

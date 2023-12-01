@@ -42,4 +42,4 @@ app.use('/authy', authyRouter)
 // define a route for the root URL
 app.use('/', express.static('../client'))
 
-app.listen(3000, () => console.log("Server started"));
+app.listen(5000, () => console.log("Server started"));

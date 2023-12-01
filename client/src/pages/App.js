@@ -1,8 +1,25 @@
 import './App.css';
 import FrontImage from '../components/FrontImage';
-import Navigation from '../components/Navigation'
+import Navigation from '../components/Navigation';
+// import { useEffect } from 'react'
 
 function App() {
+  /*
+  EXAMPLE FOR HOW TO ACCESS BACKEND
+
+  useEffect(() => {
+    fetch("/heroes")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);*/
+
   return (
     <div>
       <Navigation/>

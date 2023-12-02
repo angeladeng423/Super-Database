@@ -15,7 +15,7 @@ function Navigation() {
 
   return (
     <div id = "unauth-navbar">
-      <p id = "homepage-link" onClick = {() => {navTo('homepage')}}>homepage</p><p id = "login-text" onClick = {() => {navTo('login')}}>login</p> <p id = "search-text" onClick = {() => {navTo('search')}}>search</p> <p id = "view-public-lists" onClick = {() => {navTo('lists')}}>view public lists</p>
+      <p id = "homepage-link" onClick = {() => {navTo('homepage')}}>homepage</p><p id = "login-text" onClick = {() => {navTo('login')}}>login</p> <p id = "search-text" onClick = {() => {navTo('search')}}>search by ddg</p> <p id = "view-public-lists" onClick = {() => {navTo('lists')}}>view public lists</p>
     </div>
   );
 }

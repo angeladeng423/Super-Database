@@ -34,17 +34,17 @@
 2. message shown -> [CONTACT ADMIN]
 
 # Unautheticated Users
-1. start page
-    - application name
-    - about blurb
-    - login button
+1. start page [x]
+    - application name [x]
+    - about blurb [x]
+    - login button [x]
 
 2. interface for searching heroes
-    - search mechanisms for heroes
-    - show entries beginning w/ search term
-    - each search result matches search terms
-    - empty search term matches all search values
-    - name & publisher of each matching hero are shown
+    - search mechanisms for heroes [x]
+    - show entries beginning w/ search term [x]
+    - each search result matches search terms [x]
+    - empty search term matches all search values [x]
+    - name & publisher of each matching hero are shown [x]
 
 3. expand search result to view info
     - view all available info

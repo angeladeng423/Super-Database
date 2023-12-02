@@ -59,17 +59,25 @@ router.get('/heroSearch/:race/:name/:power/:publisher', async (req, res) => {
         function checkPower(powerResult){
             for(let i = 0; i < powerResult.length; i++){
                 if (powerResult[i][uppercasePower] === 'True'){
-                    heroNamesWPowers = [...heroNamesWPowers, powerResult[i]]
+                    heroNamesWPowers = [...heroNamesWPowers, powerResult[i].hero_names]
                 }
             }
         }
 
+        console.log(heroNamesWPowers)
         let filteredHeroes = []
-        filterByPower(result)
+        
+        if(heroNamesWPowers.length != 0){
+            filterByPower(result, heroNamesWPowers)
+        } else {
+            filteredHeroes = [...result]
+        }
 
-        function filterByPower(result){
+        function filterByPower(result, heroNames){
             for(let i = 0; i < result.length; i++){
-                filteredHeroes = [...filteredHeroes, result[i]]
+                if(heroNames.includes((result[i].name))){
+                    filteredHeroes = [...filteredHeroes, result[i]]
+                }
             }
         }
 
@@ -80,9 +88,6 @@ router.get('/heroSearch/:race/:name/:power/:publisher', async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
-
-
-
 
 // LAB 3 API BELOW:
 
@@ -168,9 +173,6 @@ router.put('/listOfLists/:listName', async (req, res) => {
         if (!listExists) {
             res.status(404).send('The list does not exist.')
         }
-
-        console.log(listExists[0].listContents)
-        console.log(req.body.listContents)
 
         listExists[0].listContents = req.body.listContents;
         const updatedList = await listExists[0].save();

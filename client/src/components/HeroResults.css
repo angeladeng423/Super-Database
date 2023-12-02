@@ -1,0 +1,91 @@
+#matches-list{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: #D4DED3;
+}
+
+li{
+    overflow: auto;
+    list-style: none;
+    background-color: #838E82;
+    width: 35vw;
+    height: 20vh;
+    padding: 1rem;
+    margin: 1.5rem;
+    font-family: 'Inter', sans-serif;
+    color: white;
+    overflow-x: hidden;
+}
+
+#search-bar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#searchby{
+    margin-left: 3rem;
+}
+
+#race-input, #name-input, #power-input, #publisher-input{
+    width: 20vw;
+    font-family: 'Inter', sans-serif;
+    border-radius: 14px;
+    border: 1.5px solid;
+    padding: 0.25rem;
+    padding-left: 0.5rem;
+}
+
+.line{
+    border-bottom: 1px solid #888;
+}
+
+#expand-info{
+    font-family: 'Inter', sans-serif;
+    margin-top: 1rem;
+    height: 1.5rem;
+    width: 35vw;
+    border: 0px;
+    background-color: #D4DED3;
+    position: relative;
+    display: inline-block;
+}
+
+#expand-info:hover{
+    background-color: #CFD6C6;
+}
+  
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+  
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 35vw;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+  
+.dropdown-content p {
+    color: black;
+    font-family: 'Inter', 'Sans-Serif';
+    padding: 12px 16px;
+    margin: 0px;
+    text-decoration: none;
+    display: block;
+}
+  
+.dropdown-content p:hover {
+    cursor: pointer;
+    background-color: #ddd;
+}
+  
+.dropdown:hover .dropdown-content {
+    display: block;
+}

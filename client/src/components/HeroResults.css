@@ -89,3 +89,7 @@ li{
 .dropdown:hover .dropdown-content {
     display: block;
 }
+
+#powerFormatting{
+    margin: 0px;
+}

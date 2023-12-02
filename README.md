@@ -48,7 +48,7 @@
 
 3. expand search result to view info
     - view all available info
-    - name & publisher of other results remain visible
+    - name & publisher of other results remain visible [x]
 
 4. button for search on ddg
     - "search" button shown along each track

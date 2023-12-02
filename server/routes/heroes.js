@@ -64,7 +64,6 @@ router.get('/heroSearch/:race/:name/:power/:publisher', async (req, res) => {
             }
         }
 
-        console.log(heroNamesWPowers)
         let filteredHeroes = []
         
         if(heroNamesWPowers.length != 0){

@@ -25,7 +25,6 @@ router.get('/', async (req, res) => {
 })
 
 // returning the powers based on the heroID
-// used
 router.get('/:heroID', async (req, res) =>{
     try{
         const heroID = await Heroes.find({id: req.params.heroID})

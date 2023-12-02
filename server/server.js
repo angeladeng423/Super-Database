@@ -8,14 +8,11 @@ const mongoose = require('mongoose');
 mongoose.connect(process.env.DATABASE_URL_HEROINFO, {useNewUrlParser: true, useUnifiedTopology: true});
 const db1 = mongoose.connection;
 
-mongoose.createConnection(process.env.DATABASE_URL_POWERS, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.createConnection(process.env.DATABASE_URL_POW, { useNewUrlParser: true, useUnifiedTopology: true });
 const db2 = mongoose.connection;
 
 mongoose.createConnection(process.env.DATABASE_URL_LIST, { useNewUrlParser: true, useUnifiedTopology: true });
 const db3 = mongoose.connection;
-
-mongoose.createConnection(process.env.DATABASE_URL_LIST, { useNewUrlParser: true, useUnifiedTopology: true });
-const db4 = mongoose.connection;
 
 // added error & connected messages
 db1.on('error', (error) => console.error(error))

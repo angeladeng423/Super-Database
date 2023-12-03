@@ -9,7 +9,7 @@
 6. Provide DMCA notice & takedown policy
 
 # Authentication
-1. text field for email and password
+1. text field for email and password [x]
 2. enter existing email & password -> gives error
 3. enter email/password not know -> gives error
 4. mechanism to update password for authenticated user
@@ -47,7 +47,7 @@
     - name & publisher of each matching hero are shown [x]
 
 3. expand search result to view info
-    - view all available info
+    - view all available info [x]
     - name & publisher of other results remain visible [x]
 
 4. button for search on ddg
@@ -56,9 +56,10 @@
     - search page shows results of search w/ name & publisher
 
 5. keywords are soft matched
-    - capitalization
-    - white-space
-    - two characters are missing or different
+    - capitalization [x]
+    - white-space [x]
+    - two characters are missing or different [x]
+        - WORK ON POWER SOFTMATCHING NEXT
 
 6. list of public lists
     - start page shows up to 10 public lists

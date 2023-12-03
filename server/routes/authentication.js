@@ -22,11 +22,38 @@ router.post('/register', async (req, res) => {
         user.verificationToken = token;
         await user.save();
 
+        sendVerificationEmail(user.email, user.verificationToken)
+
         res.json({status: 'ok'})
     } catch (err) {
         res.json({status: err})
     }
 })
+
+const sendVerificationEmail = (userEmail, verificationToken) => {
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'se3316adeng32@gmail.com',
+            pass: "wjsr qgek gbfy kjjf"
+        },
+    })
+
+    const mailOptions = {
+        from: 'se3316adeng32@gmail.com',
+        to: userEmail,
+        subject: 'verify your email',
+        html: `<p>Click the following link to verify your email: <a href="http://localhost:3000/verify/${verificationToken}">Verify Email</a></p>`, 
+    }
+
+    transporter.sendMail(mailOptions, (err, info) =>{
+        if(err){
+            console.error('error sending', err)
+        } else {
+            console.log('sent', info.response)
+        }
+    })
+}
  
 router.post('/login', async (req, res) => {
     const user = await Users.findOne({
@@ -35,11 +62,6 @@ router.post('/login', async (req, res) => {
     })
 
     if (user){
-        const token = jwt.sign({
-            email: user.email,
-            name: user.username,
-        }, 'secret123')
-
         return res.json({status: user})
     } else {
         return res.json({status: user})

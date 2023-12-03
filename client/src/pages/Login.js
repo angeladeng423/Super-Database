@@ -26,9 +26,10 @@ function Login() {
         })
             .then((res) => res.json())
             .then((data) => {
-                if(data.user){
+                console.log(data.status)
+                if(data.status !== null){
                     alert('login success!')
-                    localStorage.setItem('token', data.user)
+                    localStorage.setItem('token', data.status.verificationToken)
                     navigate('/')
                 } else {
                     alert ('Please enter existing email and password')

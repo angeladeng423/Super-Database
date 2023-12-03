@@ -13,6 +13,15 @@ router.post('/register', async (req, res) => {
             email: req.body.email,
             password: req.body.password,
         })
+
+        const token = jwt.sign({
+            email: user.email,
+            name: user.username,
+        }, 'secret123')
+
+        user.verificationToken = token;
+        await user.save();
+
         res.json({status: 'ok'})
     } catch (err) {
         res.json({status: err})
@@ -24,16 +33,16 @@ router.post('/login', async (req, res) => {
         email: req.body.email,
         password: req.body.password,
     })
-    if (user){
 
+    if (user){
         const token = jwt.sign({
             email: user.email,
             name: user.username,
         }, 'secret123')
 
-        return res.json({status: 'ok', user: token})
+        return res.json({status: user})
     } else {
-        return res.json({status: 'error', user: false})
+        return res.json({status: user})
     }
 })
 

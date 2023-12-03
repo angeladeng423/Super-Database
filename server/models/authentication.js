@@ -46,7 +46,11 @@ const authySchema = new mongoose.Schema({
           ]
         },
     verified: {
-        type: Boolean
+        type: String,
+        defaultValue: "unverified"
+    },
+    verificationToken: {
+        type: String
     }
 })
 

@@ -1,9 +1,10 @@
 import './PublicLists.css'
+import Navigation from '../components/Navigation' 
 
 function PublicLists() {
     return (
-      <div id>
-
+      <div>
+        <Navigation/>
       </div>
     );
   }

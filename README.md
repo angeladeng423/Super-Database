@@ -10,17 +10,17 @@
 
 # Authentication
 1. text field for email and password [x]
-2. enter existing email & password -> gives error
-3. enter email/password not know -> gives error
+2. enter existing email & password -> successful [x]
+3. enter email/password not know -> gives error [x]
 4. mechanism to update password for authenticated user
-5. login area -> offers new account creation (NAC)
-6. selecting NAC -> shows username, email, and password
-7. during NAC, email alr exists -> gives error
+5. login area -> offers new account creation (NAC) [x]
+6. selecting NAC -> shows username, email, and password [x]
+7. during NAC, email alr exists -> gives error [x]
 
 # Input Validation
-1. empty email field -> prompt user to enter email
-2. empty pass field -> prompt user to enter pass
-3. invalid email address -> prompt user to enter valid password
+1. empty email field -> prompt user to enter email [x]
+2. empty pass field -> prompt user to enter pass [x]
+3. invalid email address -> prompt user to enter valid email [x]
 
 # Verification of Email
 1. user instructed to click on link to verify email

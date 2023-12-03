@@ -1,13 +1,16 @@
 import './CreateAcc.css'
 import Navigation from '../components/Navigation'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function CreateAcc() {
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    
+    const navigate = useNavigate()
 
-    async function registerUser(event) {
+    async function registerUser() {
         await fetch('/authy/register', {
             method: 'POST',
             headers: {
@@ -21,8 +24,25 @@ function CreateAcc() {
         })
             .then((res) => res.json())
             .then((data) => {
-                console.log(data);
+                console.log(data.status);
+                if(data.status === 'ok'){
+                    alert("Account created. Please verify your email.")
+                    navigate('/login')
+                } else {
+                    if (data.status.errors) {
+                        if (data.status.errors.email) {
+                            alert("Email field must not be empty and must be a valid email (contains @).")
+                        } else if (data.status.errors.username) {
+                            alert("Username field must not be empty.")
+                        } else if (data.status.errors.password) {
+                            alert("Password field must not be empty.")
+                        }
+                    } else if (data.status.code === 11000) {
+                        alert("Your email must be unique.")
+                    }
+                }
             });
+            
     }    
 
     return (

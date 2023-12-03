@@ -4,6 +4,7 @@ import './index.css';
 import App from './pages/App';
 import Login from './pages/Login'
 import CreateAcc from './pages/CreateAcc';
+import PublicLists from './pages/PublicLists';
 
 import {
   createBrowserRouter,
@@ -24,7 +25,19 @@ const router = createBrowserRouter([
   {
     path: "/create-account",
     element: <CreateAcc/>
-  }
+  },
+  {
+    path: "/create-account/login",
+    element: <Login/>
+  }, 
+  {
+    path: "/public-lists",
+    element: <PublicLists/>
+  }, 
+  {
+    path: "/public-lists/login",
+    element: <Login/>
+  }, 
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

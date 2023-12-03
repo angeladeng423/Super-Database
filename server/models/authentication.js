@@ -11,7 +11,7 @@ const authySchema = new mongoose.Schema({
                     return false; // Reject empty arrays
                 }
             },
-            message: "List contents must not be empty."
+            message: "Username must not be empty."
         }
     },
     password: {
@@ -23,23 +23,30 @@ const authySchema = new mongoose.Schema({
                     return false;
                 }
             },
-            message: "Choose a better password nerd."
+            message: "Password must not be empty."
         }
     },
     email: {
         required: true,
         unique: true,
         type: String,
-        validate: {
-            validator: function(contents){
-                if(!contents || contents.length === 0){
-                    return false;
-                } else if (!contents.includes('@')){
-                    return false;
-                }
+        validate: [
+            {
+              validator: function (contents) {
+                return contents && contents.length > 0;
+              },
+              message: "Email must not be empty."
             },
-            message: "Choose a better email nerd."
-        }
+            {
+              validator: function (contents) {
+                return contents && contents.includes('@');
+              },
+              message: "Email must contain @ symbol."
+            }
+          ]
+        },
+    verified: {
+        type: Boolean
     }
 })
 

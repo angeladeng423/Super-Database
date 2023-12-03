@@ -24,7 +24,7 @@ function CreateAcc() {
         })
             .then((res) => res.json())
             .then((data) => {
-                console.log(data.status);
+                console.log(data);
                 if(data.status === 'ok'){
                     alert("Account created. Please verify your email.")
                     navigate('/login')

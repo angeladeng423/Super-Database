@@ -1,7 +1,12 @@
 import './ListManagement.css'
+import Navigation from '../components/Navigation'
 
 function ListManagement(){
-    console.log("hehe")
+    return(
+        <div>
+            <Navigation/>
+        </div>
+    )
 }
 
 export default ListManagement

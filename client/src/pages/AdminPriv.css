@@ -1,0 +1,20 @@
+#center-this{
+    margin-top: 20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#email-track, #deactivate{
+    border-radius: 14px;
+    border: 1.5px solid;
+    height: 1.5rem;
+    padding-left: 0.7rem;
+    min-width: 50vw;
+    font-family: 'Inter', sans-serif;
+}
+
+#email-track:focus, #deactivate:focus{
+    outline: none;
+}

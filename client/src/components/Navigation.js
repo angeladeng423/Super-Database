@@ -17,6 +17,10 @@ function Navigation() {
       navigate('/public-lists');
     } else if (selected === "login") {
       loginStatus() ? logout() : navigate('login');
+    } else if (selected === "admin-priv"){
+      navigate('/admin-priv')
+    } else if (selected === "manage-lists"){
+      navigate('/list-manage')
     }
   }
 
@@ -63,8 +67,8 @@ function Navigation() {
       <p id="login-text" onClick={() => { navTo('login') }}>{loginStatus() ? 'logout' : 'login'}</p>
       <p id="search-text" onClick={() => { navTo('search') }}>search by ddg</p>
       <p id="view-public-lists" onClick={() => { navTo('lists') }}>view public lists</p>
-      <p id="manage-my-lists">{loginStatus() ? "manage my lists" : ""}</p>
-      {loginStatus() && adminStatus && <p id="admin-priv">admin privileges</p>}
+      <p id="manage-my-lists" onClick = {() => { navTo('manage-lists')}}>{loginStatus() ? "manage my lists" : ""}</p>
+      {loginStatus() && adminStatus && <p onClick = {() => {navTo('admin-priv')}} id="admin-priv">admin privileges</p>}
     </div>
   );
 }

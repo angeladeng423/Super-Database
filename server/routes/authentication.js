@@ -4,14 +4,19 @@ const Users = require('../models/authentication.js')
 
 const jwt = require('jsonwebtoken')
 const nodemailer = require("nodemailer")
+const bcrypt = require('bcrypt')
 
 // used on createAccount
 router.post('/register', async (req, res) => {
+    const hashedPassword = await bcrypt.hash(req.body.password, 10)
+
     try {
+        console.log(hashedPassword)
+
         const user = await Users.create({
             username: req.body.username,
             email: req.body.email,
-            password: req.body.password,
+            password: hashedPassword,
         })
 
         const token = jwt.sign({
@@ -71,12 +76,15 @@ const sendVerificationEmail = (userEmail, verificationToken) => {
  
 router.post('/login', async (req, res) => {
     const user = await Users.findOne({
-        email: req.body.email,
-        password: req.body.password,
+        email: req.body.email
     })
 
-    if (user){
-        return res.json({status: user})
+    if (user) {
+        const passwordMatch = await bcrypt.compare(req.body.password, user.password);
+
+        if (passwordMatch) {
+            return res.json({ status: user });
+        }
     } else {
         return res.json({status: user})
     }
@@ -107,6 +115,18 @@ router.post('/register/new-admin', async (req, res) =>{
 
     if(user){
         user.verified = "admin"
+        await user.save()
+
+        res.json(user)
+    }
+})
+
+// api for converting user to deactivated
+router.post('/register/deactivate', async (req, res) =>{
+    const user = await Users.findOne({email: req.body.email})
+
+    if(user){
+        user.verified = "deactivated"
         await user.save()
 
         res.json(user)

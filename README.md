@@ -82,14 +82,44 @@
 
 # Additional Functionality for Authenticated Users
 1. create up to 20 named lists of heroes
+    - mechanism to view all lists created by user
+    - list name must be unique
+    - mechanism to add optional description
+    - mechanism to set visibility to public
+    - visibility is set to private automatically
+    - mechanism to save list
+    - list without an attribute cannot be saved
+    - upon saving, list appears on lists created by user
 2. show full information about a list
+    - shows all information about the list
 3. edit all aspects of existing list
+    - show names of lists created by user
+    - select a list for editing
+    - can add or remove entry
+    - not able to add entry that doesn't exist
+    - saved changes appear on all applicable views of list
+    - updated date is changed to time of saving modified info
+    - non public lists are sorted to reflect modification time
+    - user cannot edit a list that the user does not own
 4. delete a list
+    - select list for deletion
+    - ask for confirmation before deletion
+    - upon deletion, change is immediately reflected
+    - if confirmation declined, list is not deleted
+    - user cannot delete a list user does not own
 5. add review to list
+    - select any public list for adding review
+    - enter rating for selected list
+    - enter comment for selected list
+    - mechanism to save review w/ confirmation
+    - username & creation date are saved along w/ review
 
 # Admin Functionality Related To Site Maintenance
-1. special user w/ admin access 
+1. special user w/ admin access
+    - one user is designated as administrator [x]
 2. grant admin privileges to existing users
+    - mechanism to grant any user-created account admin privileges 
+    - normal user cannot grant admin privileges
 3. ability to mark review as hidden
 4. ability to mark user as deactivated
 

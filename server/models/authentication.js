@@ -19,7 +19,7 @@ const authySchema = new mongoose.Schema({
         type: String,
         validate: {
             validator: function(contents){
-                if(!contents || contents.length === 0 || contents.length > 20){
+                if(!contents || contents.length === 0){
                     return false;
                 }
             },

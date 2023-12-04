@@ -101,6 +101,29 @@ router.get('/verify/:token', async (req, res) => {
     }
 })
 
+// api for converting user to admin
+router.post('/register/new-admin', async (req, res) =>{
+    const user = await Users.findOne({email: req.body.email})
+
+    if(user){
+        user.verified = "admin"
+        await user.save()
+
+        res.json(user)
+    }
+})
+
+// get user based on their token
+router.post('/token/user', async (req, res) => {
+    const user = await Users.findOne({verificationToken: req.body.token})
+
+    if(user){
+        res.json(user.verified)
+    } else {
+        res.json(req.body.verificationToken)
+    }
+})
+
 // api for viewing all users in database, test feature
 router.get('/register/test', async(req, res) => {
     const users = await Users.find({})

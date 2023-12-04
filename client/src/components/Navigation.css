@@ -1,6 +1,7 @@
 #unauth-navbar{
     display:flex;
     flex-direction: row;
+    justify-content: space-evenly;
     background-color: #D4DED3;
     height: 15vh;
     align-items: center;
@@ -10,13 +11,13 @@ p{
     font-family: 'Inter', sans-serif;
 }
 
-#login-text, #homepage-link, #search-text, #view-public-lists{
+#admin-priv, #manage-my-lists, #login-text, #homepage-link, #search-text, #view-public-lists{
     font-size: 1rem;
     font-weight: 400;
-    padding-left: 3rem;
     cursor: pointer;
 }
 
-#login-text:hover, #homepage-link:hover, #search-text:hover, #view-public-lists:hover {
+#admin-priv:hover, #manage-my-lists:hover, #login-text:hover, #homepage-link:hover, #search-text:hover, #view-public-lists:hover {
     color: darkgreen;
 }
+

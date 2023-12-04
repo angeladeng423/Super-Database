@@ -88,7 +88,7 @@
 5. add review to list
 
 # Admin Functionality Related To Site Maintenance
-1. special user w/ admin access
+1. special user w/ admin access 
 2. grant admin privileges to existing users
 3. ability to mark review as hidden
 4. ability to mark user as deactivated

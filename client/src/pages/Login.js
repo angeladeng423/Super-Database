@@ -29,7 +29,7 @@ function Login() {
             .then((data) => {
                 console.log(data.status)
                 if(data.status !== null){
-                    if(data.status.verified === 'verified'){
+                    if(data.status.verified === 'verified' || data.status.verified === 'admin'){
                         alert('Login success!')
                         localStorage.setItem('token', data.status.verificationToken)
                         navigate('/')
@@ -72,7 +72,7 @@ function Login() {
                         loginUser()
                     }} id = "submit-btn">login!</button>
                     <p id = "link-to-new-acc" onClick = {navTo}> create a new account!</p>
-                    {showResend ? <p id = "resend-btn" onClick = {resend}>resend verification!</p> : (console.log("test"))}
+                    {showResend ? <p id = "resend-btn" onClick = {resend}>resend verification!</p> : ""}
                 </div>
             </div>
 

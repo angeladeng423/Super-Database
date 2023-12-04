@@ -48,6 +48,8 @@ const authySchema = new mongoose.Schema({
     verified: {
         type: String,
         defaultValue: "unverified"
+
+        // four diff values: unverified, verified, admin, deactivated
     },
     verificationToken: {
         type: String

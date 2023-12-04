@@ -6,6 +6,8 @@ import Login from './pages/Login'
 import CreateAcc from './pages/CreateAcc';
 import PublicLists from './pages/PublicLists';
 import EmailVerification from './pages/EmailVerification'
+import AdminPriv from './pages/AdminPriv';
+import ListManagement from './pages/ListManagement'
 
 import {
   createBrowserRouter,
@@ -46,6 +48,14 @@ const router = createBrowserRouter([
   {
     path: "/verify/:token/login",
     element: <Login/>
+  },
+  {
+    path: "/admin-priv",
+    element: <AdminPriv/>
+  },
+  {
+    path: "/list-manage",
+    element: <ListManagement/>
   }
 ]);
 

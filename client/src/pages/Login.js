@@ -8,6 +8,7 @@ function Login() {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [showResend, setShowResend] = useState(false)
 
     function navTo(){
         navigate('/create-account')
@@ -34,12 +35,29 @@ function Login() {
                         navigate('/')
                     } else {
                         alert('Please verify your email!')
+                        setShowResend(true)
                     }
                 } else {
                     alert ('Please enter existing email and password')
                 }
             });
-    }   
+    } 
+
+    async function resend(){
+        await fetch ('/authy/resend', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email,
+            })
+        })
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data)
+        })
+    }
 
     return (
         <div>
@@ -53,7 +71,8 @@ function Login() {
                     <button onClick = {() => {
                         loginUser()
                     }} id = "submit-btn">login!</button>
-                    <p id = "link-to-new-acc" onClick = {navTo}>or create a new account!</p>
+                    <p id = "link-to-new-acc" onClick = {navTo}> create a new account!</p>
+                    {showResend ? <p id = "resend-btn" onClick = {resend}>resend verification!</p> : (console.log("test"))}
                 </div>
             </div>
 

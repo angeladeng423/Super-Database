@@ -24,7 +24,7 @@
     outline: none;
 }
 
-#link-to-new-acc:hover{
+#link-to-new-acc:hover, #resend-btn:hover{
     cursor: pointer;
     color: darkgreen;
 }

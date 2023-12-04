@@ -30,6 +30,20 @@ router.post('/register', async (req, res) => {
     }
 })
 
+router.post('/resend', async (req, res) => {
+    try {
+        const user = await Users.findOne({
+            email: req.body.email
+        })
+
+        if (user){
+            sendVerificationEmail(user.email, user.verificationToken)
+        }
+    } catch (err) {
+
+    }
+})
+
 const sendVerificationEmail = (userEmail, verificationToken) => {
     const transporter = nodemailer.createTransport({
         service: 'gmail',

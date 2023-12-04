@@ -23,11 +23,11 @@
 3. invalid email address -> prompt user to enter valid email [x]
 
 # Verification of Email
-1. user instructed to click on link to verify email
-2. shown text / receives email containing link
-3. link shows page that says email is validated
-4. click on link -> email is validated
-5. if user tries to login without validating email -> email not verified, resend validation email
+1. user instructed to click on link to verify email [x]
+2. shown text / receives email containing link [x]
+3. link shows page that says email is validated [x]
+4. click on link -> email is validated [x]
+5. if user tries to login without validating email -> email not verified, resend validation email [x]
 
 # Deactivated Accounts
 1. logging in is disabled for accounts that are 'deactivated'

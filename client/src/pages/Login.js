@@ -28,9 +28,13 @@ function Login() {
             .then((data) => {
                 console.log(data.status)
                 if(data.status !== null){
-                    alert('login success!')
-                    localStorage.setItem('token', data.status.verificationToken)
-                    navigate('/')
+                    if(data.status.verified === 'verified'){
+                        alert('Login success!')
+                        localStorage.setItem('token', data.status.verificationToken)
+                        navigate('/')
+                    } else {
+                        alert('Please verify your email!')
+                    }
                 } else {
                     alert ('Please enter existing email and password')
                 }

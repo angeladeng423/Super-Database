@@ -5,6 +5,7 @@ import App from './pages/App';
 import Login from './pages/Login'
 import CreateAcc from './pages/CreateAcc';
 import PublicLists from './pages/PublicLists';
+import EmailVerification from './pages/EmailVerification'
 
 import {
   createBrowserRouter,
@@ -38,6 +39,14 @@ const router = createBrowserRouter([
     path: "/public-lists/login",
     element: <Login/>
   }, 
+  {
+    path: "/verify/:token",
+    element: <EmailVerification/>
+  },
+  {
+    path: "/verify/:token/login",
+    element: <Login/>
+  }
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

@@ -68,6 +68,25 @@ router.post('/login', async (req, res) => {
     }
 })
 
+router.get('/verify/:token', async (req, res) => {
+    const token = req.params.token;
+
+    try {
+        const user = await Users.findOne({ verificationToken: token})
+        
+        if(!user){
+            res.json("User not found.")
+        } else {
+            user.verified = "verified"
+            await user.save()
+        }
+        
+        res.json("User has been verified.")
+    } catch (err) {
+        console.log(err)
+    }
+})
+
 // api for viewing all users in database, test feature
 router.get('/register/test', async(req, res) => {
     const users = await Users.find({})

@@ -4,10 +4,28 @@ import { useState } from 'react'
 
 function AdminPriv(){
     const [email, setEmail] = useState("")
+    const [deactivateEmail, setDeactivateEmail] = useState("")
+    const [reactivateEmail, setReactivateEmail] = useState("")
 
     async function deactivateUser(){
+        await fetch('/authy/register/deactivate', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                deactivateEmail,
+            })
+        })
+        .then((res) => res.json())
+        .then((data) => {
+            alert("Successfully deactivated.")
+        })
+    }
 
-        await fetch('/authy/new-admin', {
+    async function createAdmin(){
+        console.log(email)
+        await fetch('/authy/register/new-admin', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -18,12 +36,25 @@ function AdminPriv(){
         })
         .then((res) => res.json())
         .then((data) => {
-            console.log(data)
+            alert("Successfully created new admin.")
         })
     }
 
-    async function createAdmin(){
-
+    async function reactivate(){
+        console.log(reactivateEmail)
+        await fetch('/authy/register/reactivate', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                reactivateEmail,
+            })
+        })
+        .then((res) => res.json())
+        .then((data) => {
+            alert("Successfully reactivated accunt.")
+        })
     }
 
     return(
@@ -31,10 +62,16 @@ function AdminPriv(){
             <Navigation/>
             <div id = "center-this">
                 <p>Enter the email of the user to receive admin privileges:</p>
-                <input id = "email-track" placeholder = "Enter email..."></input>
-            
+                <input value = {email} onChange = {(e) => setEmail(e.target.value)} id = "email-track" placeholder = "Enter email..."></input>
+                <button onClick = {createAdmin} id = "sub-btn">Submit!</button>
+
                 <p>Enter the email of the user you'd like to deactivate:</p>
-                <input value = {email} onChange = {(e) => setEmail(e.target.value)} id = "deactivate" placeholder = "Enter email..."></input>
+                <input value = {deactivateEmail} onChange = {(e) => setDeactivateEmail(e.target.value)} id = "deactivate" placeholder = "Enter email..."></input>
+                <button onClick = {deactivateUser} id = "sub-btn">Submit!</button>
+            
+                <p>Enter the email of the user you'd like to reactivate:</p>
+                <input value = {reactivateEmail} onChange = {(e) => setReactivateEmail(e.target.value)} id = "deactivate" placeholder = "Enter email..."></input>
+                <button onClick = {reactivate} id = "sub-btn">Submit!</button>
             </div>
         </div>
     )

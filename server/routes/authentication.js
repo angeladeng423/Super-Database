@@ -117,21 +117,44 @@ router.post('/register/new-admin', async (req, res) =>{
         user.verified = "admin"
         await user.save()
 
+        console.log('User made into admin successfully.')
         res.json(user)
+    } else {
+        res.json(req.body.email)
     }
 })
 
 // api for converting user to deactivated
-router.post('/register/deactivate', async (req, res) =>{
-    const user = await Users.findOne({email: req.body.email})
+router.post('/register/deactivate', async (req, res) => {
+    const user = await Users.findOne({ email: req.body.deactivateEmail });
 
-    if(user){
-        user.verified = "deactivated"
-        await user.save()
+    if (user) {
+        user.verified = "deactivated";
+        await user.save();
 
-        res.json(user)
+        console.log('User deactivated successfully:', user);
+        res.json(user);
+    } else {
+        console.log('User not found:', req.body.email);
+        res.json(req.body.email);
     }
-})
+});
+
+// api for converting user to be reactivated
+router.post('/register/reactivate', async (req, res) => {
+    const user = await Users.findOne({ email: req.body.reactivateEmail });
+
+    if (user) {
+        user.verified = "verified";
+        await user.save();
+
+        console.log('User reactivated successfully:', user);
+        res.json(user);
+    } else {
+        console.log('User not found:', req.body.email);
+        res.json(req.body.email);
+    }
+});
 
 // get user based on their token
 router.post('/token/user', async (req, res) => {

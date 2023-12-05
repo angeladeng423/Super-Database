@@ -118,15 +118,21 @@
 1. special user w/ admin access
     - one user is designated as administrator [x]
 2. grant admin privileges to existing users
-    - mechanism to grant any user-created account admin privileges 
-    - normal user cannot grant admin privileges
+    - mechanism to grant any user-created account admin privileges [x]
+    - normal user cannot grant admin privileges [x]
 3. ability to mark review as hidden
+    - admin can select any review & mark as hidden
+    - review with hidden status not shown anywhere on site
+    - admin is able to remove hidden status
 4. ability to mark user as deactivated
+    - admin can deactivate any account [x]
+    - user trying to log into deactivate account, login always fails w/ message that account is disabled & a contact of admin [x]
+    - admin can remove deactivated mark from an account  [x]
 
 # Webservice API
-1. revise lab3 API as necessary to provide required functionality
-2. build your application using this API
+1. revise lab3 API as necessary to provide required functionality [x]
+2. build your application using this API [x]
 
-# Admin Functionality Related To Copyright
+# Admin Functionality Related To Copyright [later]
 1. create security & privacy policy
 2. create DMCA notice & takedown policy

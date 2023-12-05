@@ -18,3 +18,16 @@
 #email-track:focus, #deactivate:focus{
     outline: none;
 }
+
+#sub-btn{
+    margin-top: 1rem;
+    height: 1.5rem;
+    width: 5rem;
+    border-radius: 14px;
+    border: 0px;
+    background-color: #D4DED3;
+}
+
+#sub-btn:hover{
+    background-color: #CFD6C6;
+}

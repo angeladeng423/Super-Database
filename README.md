@@ -30,8 +30,8 @@
 5. if user tries to login without validating email -> email not verified, resend validation email [x]
 
 # Deactivated Accounts
-1. logging in is disabled for accounts that are 'deactivated'
-2. message shown -> [CONTACT ADMIN]
+1. logging in is disabled for accounts that are 'deactivated' [x]
+2. message shown -> [CONTACT ADMIN] [x]
 
 # Unautheticated Users
 1. start page [x]
@@ -59,7 +59,6 @@
     - capitalization [x]
     - white-space [x]
     - two characters are missing or different [x]
-        - WORK ON POWER SOFTMATCHING NEXT
 
 6. list of public lists
     - start page shows up to 10 public lists

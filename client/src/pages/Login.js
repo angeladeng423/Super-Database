@@ -29,7 +29,7 @@ function Login() {
         })
             .then((res) => res.json())
             .then((data) => {
-                console.log(data.status)
+                console.log(data)
                 if(data.status !== null){
                     if(data.status.verified === "deactivated"){
                         alert("Your account has been deactivate. Please contact the admin with the email 'se3316adeng32@gmail.com'")
@@ -37,9 +37,11 @@ function Login() {
                         alert('Login success!')
                         localStorage.setItem('token', data.status.verificationToken)
                         navigate('/')
-                    } else {
+                    } else if (data.status.verified === 'unverified') {
                         alert('Please verify your email!')
                         setShowResend(true)
+                    } else if (data.status === 'not matching'){
+                        alert("Please retry with your correct email and password.")
                     }
                 } else {
                     alert ('Please enter existing email and password')

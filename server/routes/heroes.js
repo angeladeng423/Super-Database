@@ -138,8 +138,11 @@ router.get('/heroList/:field/:pattern', async (req, res) => {
 // used
 router.post('/listOfLists', async (req, res) => {
     const newList = new List({
+        ownerToken: req.body.token,
         listName: req.body.listName,
-        listContents: req.body.listContents
+        listContents: req.body.listContents, 
+        listDescription: req.body.listDescription,
+        listVisibility: req.body.visibility
     })
 
     try{

@@ -84,9 +84,11 @@ router.post('/login', async (req, res) => {
 
         if (passwordMatch) {
             return res.json({ status: user });
+        } else {
+            return res.json({ status: "not matching"})
         }
     } else {
-        return res.json({status: user})
+        return res.json("error")
     }
 })
 

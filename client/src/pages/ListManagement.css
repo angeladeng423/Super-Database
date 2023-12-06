@@ -1,23 +1,99 @@
 #formatting{
     display: flex;
-    border: 2px black solid;
-    width: 100vw;
-    height: 85vh;
+    width: 97vw;
+    height: 81vh;
 }
 
 #selected-list{
     display: flex;
-    border: 2px blue solid;
+    flex-direction: column;
+    border: 1px black solid;
+    margin: 1rem;
     width: 50vw;
-    height: 85vh;
+    height: 81vh;
+    align-items: center;
+    overflow-y: auto;
+}
+
+#center{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #lists-div{
     display:flex;
     flex-direction: column;
-    border: 2px red solid;
     width: 50vw;
     height:85vh;
+}
+
+#create-list-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#list-containers{
+    height: 40vh;
+    overflow-y: auto;
+}
+
+#name-input, #hero-list, #desc-input{
+    border-radius: 14px;
+    border: 1.5px solid;
+    height: 1.5rem;
+    padding-left: 0.7rem;    font-family: 'Inter', sans-serif;;
+}
+
+#user-input:focus, #pass-input:focus{
+    outline: none;
+}
+
+#show-hero-info, #edit-list-btn{
+    margin-top: 1rem;
+    height: 1.5rem;
+    width: 15rem;
+    border-radius: 14px;
+    border: 0px;
+    background-color: #D4DED3;
+}
+
+#create-list-btn{
+    margin-top: 1.5rem;
+    height: 1.5rem;
+    width: 5rem;
+    margin-left: 1rem;
+    border-radius: 14px;
+    border: 0px;
+    background-color: #D4DED3;
+}
+
+#one-container{
+    margin-top: 1rem;
+    margin-right: 1rem;
+    display: flex;
+    flex-direction: column;
+    border: 1px black solid;
+}
+
+#one-container:hover{
+    background-color: lightgrey;
+}
+
+#name-of-list{
+    margin-left: 1rem;
+    margin-bottom: 0rem;
+}
+
+#modified-time{
+    margin-left: 1rem;
+    margin-top: 0rem;
+}
+
+#create-list-btn:hover, #show-hero-info:hover, #edit-list-btn:hover{
+    background-color: #CFD6C6;
 }
 
 .switch{
@@ -66,4 +142,11 @@ input:checked + .slider:before{
 input:checked + .slider{
     background-color: #C7D2C0;
     border-radius: 14px;
+}
+
+#span-format{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

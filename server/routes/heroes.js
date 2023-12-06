@@ -196,6 +196,16 @@ router.get('/user-lists', async (req, res) => {
     }
 })
 
+// return a specific list
+router.post('/return-list', async (req, res) => {
+    try {
+        const list = await List.find({listName: req.body.selected, ownerToken: req.body.token})
+        res.json(list)
+    } catch (err) {
+        res.json("status: Error")
+    }
+})
+
 // save list of superhero IDs to given list name, replace superhero IDs w/ new value if list exists
 router.put('/listOfLists/:listName', async (req, res) => {
     try{
@@ -224,9 +234,9 @@ router.get('/listOfIDs/:listName', async (req, res) => {
 })
 
 // get a list of names, info, powers of all superheroes in a given list
-router.get('/listOfIDs/info/:listName', async (req, res) => {
+router.post('/list/hero-info', async (req, res) => {
     try{
-        const listOfIDs = await List.find({listName: req.params.listName});
+        const listOfIDs = await List.find({listName: req.body.selected, ownerToken: req.body.token});
 
         let heroes = []
 

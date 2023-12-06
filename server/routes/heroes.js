@@ -168,6 +168,45 @@ router.post('/user-lists', async (req, res) => {
     }
 })
 
+// edit a list based on token & list name
+router.post('/edit-list', async (req, res) => {
+    try {
+        const list = await List.find({
+            ownerToken: req.body.token,
+            listName: req.body.originalListName,
+        });
+
+        if (list.length > 0) {
+            console.log(req.body.newListName !== list[0].listName);
+            if (req.body.newListName !== list[0].listName) {
+                list[0].listName = req.body.newListName;
+            }
+
+            if (req.body.listContents !== list[0].listContents) {
+                list[0].listContents = req.body.listContents;
+            }
+
+            if (req.body.visibleStatus !== list[0].listVisibility) {
+                list[0].listVisibility = req.body.visibleStatus;
+            }
+
+            if (req.body.description !== list[0].listDescription) {
+                list[0].listDescription = req.body.description;
+            }
+
+            list[0].editedTime = req.body.editedTime;
+
+            await list[0].save(); // Save the first document in the array
+
+            res.json(list[0]);
+        } else {
+            res.json("Could not find list");
+        }
+    } catch (err) {
+        res.json(err);
+    }
+});
+
 // delete a list of superheroes with a given list name
 router.post('/delete-list', async (req, res) =>{
     console.log(req.body.selected)

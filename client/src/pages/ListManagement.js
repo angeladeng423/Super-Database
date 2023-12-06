@@ -129,9 +129,10 @@ function ListManagement() {
 
   async function deleteList(selected){
     const token = localStorage.getItem('token');
+
     await fetch('/heroes/delete-list', {
       method: 'POST',
-      header: {
+      headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
@@ -141,7 +142,13 @@ function ListManagement() {
     })
     .then((res) => res.json())
     .then((data) => {
-      alert("Successfully deleted list.")
+      if(data.message === 'Deleted'){
+        alert("Successfully deleted list.")
+        containsList()
+        setCurrentList(null)
+      } else {
+        alert("Error finding list.")
+      }
     })
   }
 
@@ -163,7 +170,13 @@ function ListManagement() {
               <span key = {index}>ID: {hero.id} Name: {hero.name} <br/> Publisher: {hero.publisher}<br/><br/></span>
             ))}</p>: ""}
             <button onClick = {() => {setAddButtonPopup(true)}} id = "edit-list-btn">Edit List!</button>
-            <button id = "delete-btn">Delete List</button>
+            <button onClick = {() => {
+              if(window.confirm("Are you sure you want to delete this list?")){
+                deleteList(currentList.listName)
+              } else {
+                // do nothing
+              }
+              }} id = "delete-btn">Delete List</button>
           </div> : <p>Selected List Here!</p>}
         </div>
         <div id="lists-div">

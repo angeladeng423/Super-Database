@@ -170,9 +170,11 @@ router.post('/user-lists', async (req, res) => {
 
 // delete a list of superheroes with a given list name
 router.post('/delete-list', async (req, res) =>{
+    console.log(req.body.selected)
+    console.log(req.body.token)
     try {
         const deletionResult = await List.deleteOne({
-            listName: req.body.listName,
+            listName: req.body.selected,
             ownerToken: req.body.token,
         });
 

@@ -32,7 +32,7 @@ function EditListPopup(props){
                 <input value = {listName} onChange = {(e) => setListName(e.target.value)}></input>
                 <p>Change Description</p>
                 <input value = {description} onChange = {(e) => setDescription(e.target.value)}></input>
-                <p>Change Visibility (Checked for Private)</p>
+                <p>Change Visibility (Checked for Public)</p>
                 <input checked = {visibility} onChange = {() => setVisibility(!visibility)} type = "checkbox"></input>
                 <p>Change Heroes:</p>
                 <input  value = {listOfHeroes} onChange = {(e) => setListOfHeroes(e.target.value)}></input>

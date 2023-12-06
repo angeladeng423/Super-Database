@@ -206,23 +206,6 @@ router.post('/return-list', async (req, res) => {
     }
 })
 
-// save list of superhero IDs to given list name, replace superhero IDs w/ new value if list exists
-router.put('/listOfLists/:listName', async (req, res) => {
-    try{
-        let listExists = await List.find({listName: req.params.listName})
-        if (!listExists) {
-            res.status(404).send('The list does not exist.')
-        }
-
-        listExists[0].listContents = req.body.listContents;
-        const updatedList = await listExists[0].save();
-
-        res.json(updatedList)
-    } catch (err){
-        res.status(400).json({message: err.message})
-    }
-})
-
 // get a list of superhero IDs for a given list
 router.get('/listOfIDs/:listName', async (req, res) => {
     try{

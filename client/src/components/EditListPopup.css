@@ -1,0 +1,72 @@
+#popup{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+#edit-cont{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#bckgrnd{
+    position: relative;
+    padding: 2rem;
+    width: 60%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    font-family: "Inter";
+}
+
+#input-emp{
+    padding: 0.25rem;
+    width: 40vw;
+}
+
+#close-btn{
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    width: 3rem;
+    height: 2rem;
+    border-radius: 14px;
+    border: 0px;
+    background-color: #D4DED3;
+}
+
+#finished-editing{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    width: 4rem;
+    height: 2rem;
+    border-radius: 14px;
+    border: 0px;
+    background-color: #D4DED3;
+}
+
+#close-btn:hover, #finished-editing:hover{
+    background-color: #CFD6C6;
+}

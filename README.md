@@ -81,19 +81,21 @@
 
 # Additional Functionality for Authenticated Users
 1. create up to 20 named lists of heroes
-    - mechanism to view all lists created by user
-    - list name must be unique
-    - mechanism to add optional description
-    - mechanism to set visibility to public
-    - visibility is set to private automatically
-    - mechanism to save list
-    - list without an attribute cannot be saved
-    - upon saving, list appears on lists created by user
+    - mechanism to view all lists created by user [x]
+    - list name must be unique [x]
+    - mechanism to add optional description [x]
+    - mechanism to set visibility to public [x]
+    - visibility is set to private automatically [x]
+    - mechanism to save list [x]
+    - list without an attribute cannot be saved [x]
+    - upon saving, list appears on lists created by user [x]
+
 2. show full information about a list
-    - shows all information about the list
+    - shows all information about the list [x]
+
 3. edit all aspects of existing list
-    - show names of lists created by user
-    - select a list for editing
+    - show names of lists created by user [x]
+    - select a list for editing [x]
     - can add or remove entry
     - not able to add entry that doesn't exist
     - saved changes appear on all applicable views of list

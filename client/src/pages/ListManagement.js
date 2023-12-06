@@ -1,6 +1,7 @@
 import './ListManagement.css';
 import Navigation from '../components/Navigation';
 import { useState, useEffect } from 'react';
+import EditListPopup from '../components/EditListPopup';
 
 function ListManagement() {
   const [visibility, setVisibility] = useState(true);
@@ -15,6 +16,9 @@ function ListManagement() {
   const [currentList, setCurrentList] = useState(null)
   const [heroesInList, setHeroesInList] = useState([])
   const [buttonSelected, setButtonSelected] = useState(false)
+
+  // manage list popup
+  const [addButtonPopup, setAddButtonPopup] = useState()
 
   useEffect(() => {
     containsList();
@@ -52,7 +56,6 @@ function ListManagement() {
       .then((res) => res.json())
       .then((data) => {
         containsList();
-        console.log(data);
       });
   }
 
@@ -121,7 +124,24 @@ function ListManagement() {
     .then((res) => res.json())
     .then((data) => {
       setCurrentList(data[0])
-      console.log(currentList)
+    })
+  }
+
+  async function deleteList(selected){
+    const token = localStorage.getItem('token');
+    await fetch('/heroes/delete-list', {
+      method: 'POST',
+      header: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        token,
+        selected
+      })
+    })
+    .then((res) => res.json())
+    .then((data) => {
+      alert("Successfully deleted list.")
     })
   }
 
@@ -142,7 +162,8 @@ function ListManagement() {
             {buttonSelected ? <p id = "span-format">{heroesInList.map((hero, index) => (
               <span key = {index}>ID: {hero.id} Name: {hero.name} <br/> Publisher: {hero.publisher}<br/><br/></span>
             ))}</p>: ""}
-            <button id = "edit-list-btn">Edit List!</button>
+            <button onClick = {() => {setAddButtonPopup(true)}} id = "edit-list-btn">Edit List!</button>
+            <button id = "delete-btn">Delete List</button>
           </div> : <p>Selected List Here!</p>}
         </div>
         <div id="lists-div">
@@ -176,6 +197,13 @@ function ListManagement() {
           </div>
         </div>
       </div>
+      <EditListPopup 
+      listName = {currentList ? currentList.listName : ""}
+      description = {currentList ? currentList.listDescription : ""}
+      visibility = {currentList ? currentList.listVisibility : ""}
+      heroes = {currentList ? currentList.listContents : ""}
+      editedTime = {currentList ? currentList.editedTime : ""}
+      trigger = {addButtonPopup} setTrigger = {setAddButtonPopup}/>
     </div>
   );
 }

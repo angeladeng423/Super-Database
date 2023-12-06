@@ -9,7 +9,6 @@ const listSchema = new mongoose.Schema({
     listName: {
         type: String,
         required: true,
-        unique: true,
         trim: true,
         minlength: 3,
         maxlength: 20
@@ -49,6 +48,10 @@ const listSchema = new mongoose.Schema({
     listComments: {
         type: Object,
         defaultValue: {}
+    },
+
+    editedTime: {
+        type: String,
     }
 });
 

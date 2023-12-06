@@ -135,19 +135,19 @@ router.get('/heroList/:field/:pattern', async (req, res) => {
 })
 
 // create new list to save list of superheroes w/ given list name
-// used
 router.post('/listOfLists', async (req, res) => {
     const newList = new List({
         ownerToken: req.body.token,
         listName: req.body.listName,
         listContents: req.body.listContents, 
-        listDescription: req.body.listDescription,
-        listVisibility: req.body.visibility
+        listDescription: req.body.description,
+        listVisibility: req.body.visibleStatus,
+        editedTime: req.body.editedTime
     })
 
     try{
         const search = await List.find({listName: req.body.listName})
-        if(search.length > 0){
+        if(search.ownerToken === req.body.token){
             return res.status(400).json({ message: 'List with the same name already exists' }); // Return an error if a document is found
         }
 
@@ -158,8 +158,36 @@ router.post('/listOfLists', async (req, res) => {
     }
 })
 
-// for testing purposes, shows list of all Lists
-router.get('/listOfLists', async (req, res) => {
+// shows list of all Lists for user token
+router.post('/user-lists', async (req, res) => {
+    try{
+        const lists = await List.find({ownerToken: req.body.token});
+        res.json(lists)
+    } catch (err){
+        res.status(500).json({message: err.message})
+    }
+})
+
+// delete a list of superheroes with a given list name
+router.post('/delete-list', async (req, res) =>{
+    try {
+        const deletionResult = await List.deleteOne({
+            listName: req.body.listName,
+            ownerToken: req.body.token,
+        });
+
+        if (deletionResult.deletedCount === 0) {
+            return res.status(404).json({ message: 'Cannot find list to delete' });
+        }
+
+        res.json({ message: 'Deleted' });
+    } catch (err){
+        res.status(400).json({message: err.message})
+    }
+})
+
+// get all lists
+router.get('/user-lists', async (req, res) => {
     try{
         const lists = await List.find({});
         res.json(lists)
@@ -191,21 +219,6 @@ router.get('/listOfIDs/:listName', async (req, res) => {
         const listOfIDs = await List.find({listName: req.params.listName});
         res.json(listOfIDs[0].listContents)
     } catch (err) {
-        res.status(400).json({message: err.message})
-    }
-})
-
-// delete a list of superheroes with a given list name
-router.delete('/listOfIDs/delete/:listName', async (req, res) =>{
-    try {
-        const listOfIDs = await List.findOneAndRemove({listName: req.params.listName});
-
-        if (!listOfIDs){
-            return res.status(404).json({message: 'Cannot find list'})
-        }
-
-        res.json({message: 'Deleted'})
-    } catch (err){
         res.status(400).json({message: err.message})
     }
 })

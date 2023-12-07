@@ -165,9 +165,22 @@ router.post('/token/user', async (req, res) => {
     if(user){
         res.json(user.verified)
     } else {
-        res.json(req.body.verificationToken)
+        res.json(req.body.token)
     }
 })
+
+
+// get user based on their token
+router.post('/token/list/user', async (req, res) => {
+    const user = await Users.findOne({verificationToken: req.body.token})
+
+    if(user){
+        res.json(user.username)
+    } else {
+        res.json(req.body.token)
+    }
+})
+
 
 // api for viewing all users in database, test feature
 router.get('/register/test', async(req, res) => {

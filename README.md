@@ -61,23 +61,23 @@
     - two characters are missing or different [x]
 
 6. list of public lists
-    - start page shows up to 10 public lists
-    - private list not shown
-    - each list shows : [list name, creator nickname, number of heroes, average rating]
-    - creator email is hidden
-    - list ordered by last-modified date
-    - no aspect of list is modifiable
+    - start page shows up to 10 public lists [x]
+    - private list not shown [x]
+    - each list shows : [list name, creator nickname, number of heroes, average rating] [x]
+    - creator email is hidden [x]
+    - list ordered by last-modified date [x]
+    - no aspect of list is modifiable [x]
 
 7. ability to expand each list
-    - expand information shown for each displayed list
-    - expanded shows description & list of heroes
-    - ability to reset display back to what is shown in 6
-    - if user does modification, deletion, visibility changes after list is displayed is handled gracefully
+    - expand information shown for each displayed list [x]
+    - expanded shows description & list of heroes [x]
+    - ability to reset display back to what is shown in 6 [x]
+    - if user does modification, deletion, visibility changes after list is displayed is handled gracefully [x]
 
 8. ability to display additional information for heroes in public list
-    - ability to show additional data like in 3.
-    - ability to reset display back to what is shown in 6
-    - rare conditions are handled gracefully    
+    - ability to show additional data like in 3. [x]
+    - ability to reset display back to what is shown in 6 [x]
+    - rare conditions are handled gracefully [x]    
 
 # Additional Functionality for Authenticated Users
 1. create up to 20 named lists of heroes

@@ -96,18 +96,18 @@
 3. edit all aspects of existing list
     - show names of lists created by user [x]
     - select a list for editing [x]
-    - can add or remove entry
-    - not able to add entry that doesn't exist
-    - saved changes appear on all applicable views of list
-    - updated date is changed to time of saving modified info
+    - can add or remove entry [x]
+    - not able to add entry that doesn't exist [x]
+    - saved changes appear on all applicable views of list [x]
+    - updated date is changed to time of saving modified info [x]
     - non public lists are sorted to reflect modification time
-    - user cannot edit a list that the user does not own
+    - user cannot edit a list that the user does not own [x]
 4. delete a list
-    - select list for deletion
-    - ask for confirmation before deletion
-    - upon deletion, change is immediately reflected
-    - if confirmation declined, list is not deleted
-    - user cannot delete a list user does not own
+    - select list for deletion [x]
+    - ask for confirmation before deletion [x]
+    - upon deletion, change is immediately reflected [x]
+    - if confirmation declined, list is not deleted [x]
+    - user cannot delete a list user does not own [x]
 5. add review to list
     - select any public list for adding review
     - enter rating for selected list

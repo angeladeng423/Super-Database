@@ -4,6 +4,7 @@ const fs = require('fs');
 const Heroes = require('../models/heroes.js')
 const List = require('../models/lists.js')
 const Power = require('../models/powers.js')
+const Reviews = require('../models/reviews.js')
 const mongoSanitize = require('express-mongo-sanitize');
 
 router.use(mongoSanitize());
@@ -152,7 +153,7 @@ router.post('/listOfLists', async (req, res) => {
         }
 
         const createList = await newList.save()
-        res.status(201).json(createList)
+        res.status(201).json({message: "success"})
     } catch (err) {
         res.status(400).json({message: err.message})
     }
@@ -176,8 +177,10 @@ router.post('/edit-list', async (req, res) => {
             listName: req.body.originalListName,
         });
 
+        console.log(list[0].listVisibility)
+        console.log(req.body.visibleStatus)
+
         if (list.length > 0) {
-            console.log(req.body.newListName !== list[0].listName);
             if (req.body.newListName !== list[0].listName) {
                 list[0].listName = req.body.newListName;
             }
@@ -282,9 +285,36 @@ router.post('/list/hero-info', async (req, res) => {
         }
 
         res.json(heroes)
-    } catch (err) {
-        res.status(400).json({message: err.message})
-    }
-})
+        } catch (err) {
+            res.status(400).json({message: err.message})
+        }
+    })
+
+    // retrieves most recent lists that are also public
+    router.get('/list/recent', async (req, res) => {
+        try {
+            const recentLists = await List.find({});
+    
+            // Sorting with error handling for invalid dates
+            recentLists.sort((a, b) => {
+                const dateA = new Date(a.editedTime);
+                const dateB = new Date(b.editedTime);
+    
+                if (isNaN(dateA) || isNaN(dateB)) {
+                    // Handle invalid dates here, for example, move them to the end
+                    return isNaN(dateA) ? 1 : -1;
+                }
+    
+                return dateB - dateA;
+            });
+    
+            console.log(recentLists)
+            const publicLists = recentLists.filter((list) => list.listVisibility === 'Public');
+
+            res.json(publicLists);
+        } catch (err) {
+            res.status(400).json({ message: err.message });
+        }
+    });
 
 module.exports = router

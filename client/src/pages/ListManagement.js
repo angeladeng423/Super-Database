@@ -55,7 +55,11 @@ function ListManagement() {
     })
       .then((res) => res.json())
       .then((data) => {
-        containsList();
+        if(data.message === "success"){
+          containsList();
+        } else {
+          alert("Your list name must be unique, and attributes must be valid.")
+        }
       });
   }
 

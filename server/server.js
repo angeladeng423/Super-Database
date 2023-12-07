@@ -17,6 +17,9 @@ const db3 = mongoose.connection;
 mongoose.createConnection(process.env.DATABASE_URL_AUTHY, { useNewUrlParser: true, useUnifiedTopology: true });
 const db4 = mongoose.connection;
 
+mongoose.createConnection(process.env.DATABASE_URL_REVIEWS, { useNewUrlParser: true, useUnifiedTopology: true });
+const db5 = mongoose.connection;
+
 // added error & connected messages
 db1.on('error', (error) => console.error(error))
 db1.on('connected', () => console.log("Connected to firstDB."))
@@ -30,6 +33,8 @@ db3.on('connected', () => console.log("Connected to thirdDB."));
 db4.on('error', (error) => console.error(error));
 db4.on('connected', () => console.log("Connected to fourthDB."));
 
+db5.on('error', (error) => console.error(error));
+db5.on('connected', () => console.log("Connected to fifthDB."));
 
 // allows server to accept json
 app.use(express.json())

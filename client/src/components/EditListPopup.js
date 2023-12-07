@@ -22,7 +22,7 @@ function EditListPopup(props){
     const originalListName = props.listName
     const [newListName, setNewListName] = useState("")
     const [description, setDescription] = useState("")
-    const [visibility, setVisibility] = useState(false)
+    const [visibility, setVisibility] = useState(true)
     const [listOfHeroes, setListOfHeroes] = useState([])
     const [currentTime, setCurrentTime] = useState(new Date());
     const [visibleStatus, setVisibleStatus] = useState('Private');
@@ -34,7 +34,15 @@ function EditListPopup(props){
         const editedTime = currentTime.toLocaleString()
         const listContents = listOfHeroes.map((hero) => parseInt(hero.trim(), 10));
         
-        console.log(visibleStatus)
+        for (let i = 0; i < listContents.length; i++) {
+            const listContentAsInt = parseInt(listContents[i], 10);
+        
+            if (isNaN(listContentAsInt) || listContentAsInt >= 734) {
+                alert("Your List Contents are not valid.");
+                return false;
+            }
+        }
+
         await fetch ('/heroes/edit-list', {
             method: 'POST',
             headers: {
@@ -58,7 +66,7 @@ function EditListPopup(props){
 
     function handleCheckboxChange(){
         setVisibility(!visibility);
-        setVisibleStatus(visibility ? 'Public' : 'Private');
+        setVisibleStatus(!visibility ? 'Public' : 'Private');
     }
 
     return (props.trigger) ? (

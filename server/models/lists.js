@@ -6,6 +6,11 @@ const listSchema = new mongoose.Schema({
         required: true,
     },
 
+    listID: {
+        type: String,
+        default: () => Math.floor(Math.random() * 10000) + 1,
+    },
+
     listName: {
         type: String,
         required: true,
@@ -40,18 +45,12 @@ const listSchema = new mongoose.Schema({
         type: String
     },
 
-    listRatings: {
-        type: Object,
-        defaultValue: {}
-    },
-
-    listComments: {
-        type: Object,
-        defaultValue: {}
-    },
-
     editedTime: {
         type: String,
+    },
+
+    listReviews: {
+        type: [Number]
     }
 });
 

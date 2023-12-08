@@ -49,6 +49,7 @@ function PublicLists() {
           {publicLists.map((pubList, index) => (
             <div onClick={() => { selectedList(pubList.listName, pubList.ownerToken); setAddButtonPopup(true); }} key={index} id="public-list-item">
               <p>List Name: {pubList.listName}</p>
+              <p>User: {pubList.ownerUser}</p>
               <p>Heroes: {pubList.listContents.length}</p>
               <p>Rating: {pubList.rating}</p>
               <p>Edited Time: {pubList.editedTime}</p>

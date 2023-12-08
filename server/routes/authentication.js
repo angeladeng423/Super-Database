@@ -158,7 +158,7 @@ router.post('/register/reactivate', async (req, res) => {
     }
 });
 
-// get user based on their token
+// get user status based on their token
 router.post('/token/user', async (req, res) => {
     const user = await Users.findOne({verificationToken: req.body.token})
 

@@ -19,10 +19,32 @@ function ListManagement() {
 
   // manage list popup
   const [addButtonPopup, setAddButtonPopup] = useState()
+  const [ownerUser, setOwnerUser] = useState()
+
 
   useEffect(() => {
     containsList();
+    findUsername();
   }, []);
+
+  const loggedIn = localStorage.getItem('token');
+    
+  async function findUsername(){
+      const token = loggedIn
+      await fetch('/authy/token/list/user', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            token
+          }),
+        })
+        .then((res) => res.json())
+        .then((data) => {
+          setOwnerUser(data)
+        })
+  }
 
   function handleCheckboxChange() {
     setVisibility(!visibility);
@@ -45,6 +67,7 @@ function ListManagement() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
+        ownerUser,
         token,
         listName,
         listContents,

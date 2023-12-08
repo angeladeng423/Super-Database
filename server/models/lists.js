@@ -6,6 +6,10 @@ const listSchema = new mongoose.Schema({
         required: true,
     },
 
+    ownerUser: {
+        type: String,
+    },
+
     listID: {
         type: String,
         default: () => Math.floor(Math.random() * 10000) + 1,

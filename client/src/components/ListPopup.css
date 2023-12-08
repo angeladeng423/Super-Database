@@ -1,0 +1,4 @@
+#hero-in-list-container{
+    overflow-y: scroll;
+    max-height: 10rem;
+}

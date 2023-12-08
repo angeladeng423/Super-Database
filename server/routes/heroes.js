@@ -139,6 +139,7 @@ router.get('/heroList/:field/:pattern', async (req, res) => {
 router.post('/listOfLists', async (req, res) => {
     const newList = new List({
         ownerToken: req.body.token,
+        ownerUser: req.body.ownerUser,
         listName: req.body.listName,
         listContents: req.body.listContents, 
         listDescription: req.body.description,
@@ -316,5 +317,34 @@ router.post('/list/hero-info', async (req, res) => {
             res.status(400).json({ message: err.message });
         }
     });
+
+    // create a review for a list
+
+    router.post('/create-review', async (req, res) => {
+        try {
+            const review = await Reviews.create({
+                listId: req.body.listID,
+                comment: req.body.comment,
+                rating: req.body.rating,
+                username: req.body.username,
+                creationDate: req.body.creation
+            })
+
+            res.json("Successfully created!")
+        } catch (err) {
+            console.log(err)
+        }
+    })
+
+    // retrieve all reviews for a specific list
+    router.get('/retrieve/:listID', async (req, res) => {
+        try {
+            const listReviews = await Reviews.find({listId: req.params.listID});
+            
+            res.json(listReviews)
+        } catch (err) {
+
+        }
+    })
 
 module.exports = router

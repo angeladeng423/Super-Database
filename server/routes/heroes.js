@@ -347,4 +347,25 @@ router.post('/list/hero-info', async (req, res) => {
         }
     })
 
+    // add review to specific list
+    router.get('/add-review-list/:listID/:rating', async (req, res) => {
+        try {
+            const list = await List.findOne({listID: req.params.listID})
+            console.log(list)
+
+            if(list){
+                const rating = parseInt(req.params.rating, 10)
+                console.log(rating)
+                
+                list.listReviews.push(rating)
+                await list.save()
+                res.json("Success")
+            } else {
+                res.json("Error")
+            }
+        } catch (err) {
+            res.json("Error")
+        }
+    })
+
 module.exports = router

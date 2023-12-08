@@ -10,10 +10,13 @@ function ListPopup(props) {
     const [currentInfo, setCurrentInfo ] = useState([])
     const [username, setUsername] = useState()
     const [date, setDate] = useState(new Date())
+    const [reviewBtn, setReviewBtn] = useState(false)
+    const [reviewInfo, setReviewInfo] = useState([])
 
     useEffect(() => {
         findHeroes()
         findUsername()
+        getReviews()
     }, [props])
 
     const loggedIn = localStorage.getItem('token');
@@ -33,6 +36,22 @@ function ListPopup(props) {
           .then((data) => {
             setUsername(data)
           })
+    }
+
+    async function getReviews(){
+        await fetch(`/heroes/retrieve/${props.list.listID}`)
+        .then((res) => res.json())
+        .then((data) => {
+            setReviewInfo(data)
+        })
+    }
+
+    async function updateListReviews(rating){
+        await fetch (`/heroes/add-review-list/${props.list.listID}/${rating}`)
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data)
+        })
     }
     
     async function createReview(){
@@ -56,6 +75,7 @@ function ListPopup(props) {
           })
           .then((res) => res.json())
           .then((data) => {
+            updateListReviews(rating)
             console.log(data)
           })
     }
@@ -113,7 +133,16 @@ function ListPopup(props) {
                         ))}
                     </div> : <p></p>}</div>
                 </div> : ""}</div>
-            <br/><button>Reviews</button>
+            <br/><button onClick = {() => {setReviewBtn(!reviewBtn)}}>Reviews</button>
+            <div id = "reviewCont">{reviewBtn ? <div>
+                {reviewInfo.map((rev, index) => (
+                <span key={index}>
+                    <p>User: {rev.username}</p>
+                    <p>Rating: {rev.rating}</p>
+                    <span>{rev.comment ? <p>Comment: {rev.comment}</p> : ""}</span>
+                </span>
+            ))}
+            </div> : ""}</div>
             {loggedIn ? (
             <div>
               <p>Leave a review!</p>
@@ -121,7 +150,17 @@ function ListPopup(props) {
               <input value = {reviewRating} onChange={(e) => (setReviewRating(e.target.value))}></input>
               <p>Enter a comment</p>
               <input value = {reviewComment} onChange={(e) => (setReviewComment(e.target.value))}></input>
-              <br/><button onClick = {createReview}>Submit!</button>
+              <br/><button onClick = {() =>
+            {
+                if(reviewRating <= 5){
+                    createReview()
+                    setReviewComment("")
+                    setReviewRating("")
+                    props.setTrigger(false)
+                } else {
+                    alert("Please enter a valid review rating.")
+                }
+            }}>Submit!</button>
             </div>
             ) : null}
           <button id="close-btn" onClick={() => {

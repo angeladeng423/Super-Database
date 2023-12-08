@@ -51,7 +51,19 @@ function PublicLists() {
               <p>List Name: {pubList.listName}</p>
               <p>User: {pubList.ownerUser}</p>
               <p>Heroes: {pubList.listContents.length}</p>
-              <p>Rating: {pubList.rating}</p>
+              <div>
+              {pubList.listReviews ? (
+                <p>
+                  Rating:{" "}
+                  {(
+                    pubList.listReviews.reduce((sum, currentVal) => sum + currentVal, 0) /
+                    pubList.listReviews.length
+                  ).toFixed(2)}
+                </p>
+              ) : (
+                ""
+              )}
+            </div>
               <p>Edited Time: {pubList.editedTime}</p>
             </div>
           ))}

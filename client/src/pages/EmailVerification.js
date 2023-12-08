@@ -6,6 +6,8 @@ function EmailVerification() {
   const navigate = useNavigate();
   const { token } = useParams();
 
+  // email verification page shows after user verifies email
+  // sets user as verified
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -14,6 +16,7 @@ function EmailVerification() {
 
         console.log(data);
 
+        // after user is verified, redirects to login page after a timeout period
         setTimeout(() => {
           navigate('/login');
         }, 2000);

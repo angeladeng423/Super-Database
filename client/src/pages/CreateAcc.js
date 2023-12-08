@@ -10,6 +10,7 @@ function CreateAcc() {
     
     const navigate = useNavigate()
 
+    // async function calls backend api to register a user
     async function registerUser() {
         await fetch('/authy/register', {
             method: 'POST',

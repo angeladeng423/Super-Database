@@ -3,10 +3,12 @@ import Navigation from '../components/Navigation'
 import { useState } from 'react'
 
 function AdminPriv(){
+    // set up state variables
     const [email, setEmail] = useState("")
     const [deactivateEmail, setDeactivateEmail] = useState("")
     const [reactivateEmail, setReactivateEmail] = useState("")
 
+    // allows admin to deactivate user
     async function deactivateUser(){
         await fetch('/authy/register/deactivate', {
             method: 'POST',
@@ -23,6 +25,7 @@ function AdminPriv(){
         })
     }
 
+    // allows the setting an additional user as admin
     async function createAdmin(){
         console.log(email)
         await fetch('/authy/register/new-admin', {
@@ -40,6 +43,7 @@ function AdminPriv(){
         })
     }
 
+    // reactivates deactivated accounts
     async function reactivate(){
         console.log(reactivateEmail)
         await fetch('/authy/register/reactivate', {

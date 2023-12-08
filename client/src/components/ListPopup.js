@@ -1,10 +1,11 @@
 import React from "react";
 import './ListPopup.css';
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
 function ListPopup(props) {
-    const navigate = useNavigate()
+    // defining states
+
+    const [hiddenReviews, setHiddenReviews] = useState([]);
 
     const [buttonClick, setButtonClick] = useState(false)
     const [showHeroClick, setShowHeroClick] = useState(false)
@@ -15,15 +16,24 @@ function ListPopup(props) {
     const [date, setDate] = useState(new Date())
     const [reviewBtn, setReviewBtn] = useState(false)
     const [reviewInfo, setReviewInfo] = useState([])
+    const adminStatus = localStorage.getItem('admin')
 
     useEffect(() => {
         findHeroes()
         findUsername()
         getReviews()
     }, [props])
-
     const loggedIn = localStorage.getItem('token');
 
+    // determines whether the hide review button is in effect
+    const hideReview = (index) => {
+        setHiddenReviews([...hiddenReviews, index]);
+    };
+
+    // if a review is marked as hidden, it is included in the hidden reviews variable
+    const isReviewHidden = (index) => hiddenReviews.includes(index);
+
+    // determines the username based on the token stored
     async function findUsername(){
         const token = loggedIn
         await fetch('/authy/token/list/user', {
@@ -41,6 +51,7 @@ function ListPopup(props) {
           })
     }
 
+    // gets all reviews given the listID
     async function getReviews(){
         await fetch(`/heroes/retrieve/${props.list.listID}`)
         .then((res) => res.json())
@@ -49,6 +60,7 @@ function ListPopup(props) {
         })
     }
 
+    // updates a specific list's ratings
     async function updateListReviews(rating){
         await fetch (`/heroes/add-review-list/${props.list.listID}/${rating}`)
         .then((res) => res.json())
@@ -57,6 +69,7 @@ function ListPopup(props) {
         })
     }
     
+    // creates a review based on user input
     async function createReview(){
         const listID = props.list.listID
         const comment = reviewComment
@@ -83,6 +96,7 @@ function ListPopup(props) {
           })
     }
 
+    // finds all the heroes in a list and stores it for access in the later code
     async function findHeroes(){
         const token = props.list.ownerToken
         const selected = props.list.listName
@@ -140,10 +154,23 @@ function ListPopup(props) {
             <div id = "reviewCont">{reviewBtn ? <div>
                 {reviewInfo.map((rev, index) => (
                 <span key={index}>
+                {(adminStatus === "isAdmin") ? (
+                  <button onClick={() => hideReview(index)}>
+                    Hide Review
+                  </button>
+                ) : (
+                  ""
+                )}
+                {isReviewHidden(index) ? (
+                  <p>This review is hidden.</p>
+                ) : (
+                  <>
                     <p>User: {rev.username}</p>
                     <p>Rating: {rev.rating}</p>
                     <span>{rev.comment ? <p>Comment: {rev.comment}</p> : ""}</span>
-                </span>
+                  </>
+                )}
+              </span>
             ))}
             </div> : ""}</div>
             {loggedIn ? (

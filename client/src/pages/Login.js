@@ -8,6 +8,7 @@ import { useState } from 'react'
 function Login() {
     const navigate = useNavigate();
 
+    // determines constants
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [showResend, setShowResend] = useState(false)
@@ -16,6 +17,7 @@ function Login() {
         navigate('/create-account')
     }
 
+    // allows user to access backend to login
     async function loginUser() {
         await fetch('/authy/login', {
             method: 'POST',
@@ -31,10 +33,13 @@ function Login() {
             .then((data) => {
                 console.log(data)
                 if(data.status !== null){
+                    // based on what is returned, alerts the following
                     if(data.status.verified === "deactivated"){
                         alert("Your account has been deactivate. Please contact the admin with the email 'se3316adeng32@gmail.com'")
                     } else if(data.status.verified === 'verified' || data.status.verified === 'admin'){
                         alert('Login success!')
+
+                        // stores jwt token, which facilitates access to authenticated features
                         localStorage.setItem('token', data.status.verificationToken)
                         navigate('/')
                     } else if (data.status.verified === 'unverified') {
@@ -49,6 +54,7 @@ function Login() {
             });
     } 
 
+    // resend verification email feature
     async function resend(){
         await fetch ('/authy/resend', {
             method: 'POST',

@@ -10,6 +10,7 @@ function Navigation() {
     findAdminStatus();
   }, []);
 
+  // navigate to specific pages
   function navTo(selected) {
     if (selected === "homepage") {
       navigate('/');
@@ -24,12 +25,15 @@ function Navigation() {
     }
   }
 
+  // determines whether the user is logged in based on the jwt token
   function loginStatus() {
     const token = localStorage.getItem('token');
     return !!token;
   }
 
-  async function findAdminStatus() {
+  // determines whether the user is an admin
+  // based on this, displays a particular nav bar
+    async function findAdminStatus() {
     try {
       const token = localStorage.getItem('token');
       if (token) {
@@ -47,6 +51,7 @@ function Navigation() {
 
         if (data === 'admin') {
           setAdminStatus(true);
+          localStorage.setItem('admin', 'isAdmin')
         } else {
           setAdminStatus(false);
         }
@@ -56,6 +61,7 @@ function Navigation() {
     }
   }
 
+  // logout feature
   function logout() {
     localStorage.removeItem('token');
     navigate('/');

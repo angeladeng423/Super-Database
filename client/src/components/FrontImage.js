@@ -1,6 +1,7 @@
 import './FrontImage.css'
 import speedImage from './images/speed.png'
 
+// animations for the front page image
 function FrontImage() {
   return (
     <div id = "container">

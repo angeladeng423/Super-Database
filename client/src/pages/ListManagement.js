@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import EditListPopup from '../components/EditListPopup';
 
 function ListManagement() {
+  // managing constants
   const [visibility, setVisibility] = useState(true);
   const [visibleStatus, setVisibleStatus] = useState('Private');
   const [userLists, setUserLists] = useState([]);
@@ -21,14 +22,15 @@ function ListManagement() {
   const [addButtonPopup, setAddButtonPopup] = useState()
   const [ownerUser, setOwnerUser] = useState()
 
-
   useEffect(() => {
     containsList();
     findUsername();
   }, []);
 
+  // determines whether the user is logged in
   const loggedIn = localStorage.getItem('token');
     
+  // finds the username of user currently accessing page
   async function findUsername(){
       const token = loggedIn
       await fetch('/authy/token/list/user', {
@@ -46,21 +48,26 @@ function ListManagement() {
         })
   }
 
+  // handles whether the user chooses to check or uncheck visibility
   function handleCheckboxChange() {
     setVisibility(!visibility);
     setVisibleStatus(visibility ? 'Public' : 'Private');
   }
 
+  // calls backend api to create a new list
   async function createNewList() {
+    // validation if user has too many lists
     if(userLists.length > 20){
       return ("You have too many lists! You are limited to 20!")
     }
 
+    // setting varaibles to match backend
     setCurrentTime(new Date());
     const editedTime = currentTime.toLocaleString()
     const token = localStorage.getItem('token');
     const listContents = heroList.trim().split(',').map((hero) => parseInt(hero.trim(), 10));
 
+    // fetch feature
     await fetch('/heroes/listOfLists', {
       method: 'POST',
       headers: {
@@ -86,6 +93,7 @@ function ListManagement() {
       });
   }
 
+  // find heroes of a selected list
   async function findHeroes(selected){
     setButtonSelected(!buttonSelected)
     
@@ -117,6 +125,7 @@ function ListManagement() {
       });
   }
 
+  // determines which lists the user currently has
   async function containsList() {
     const token = localStorage.getItem('token');
     await fetch('/heroes/user-lists', {
@@ -134,6 +143,7 @@ function ListManagement() {
       });
   }
 
+  // determines which list is currently selected
   async function selectedList(selected) {
     setButtonSelected(false)
     const token = localStorage.getItem('token');
@@ -154,6 +164,7 @@ function ListManagement() {
     })
   }
 
+  // deletes a selected list
   async function deleteList(selected){
     const token = localStorage.getItem('token');
 

@@ -14,18 +14,21 @@ function HeroResults() {
     // this array contains the powers of each hero
     const [powersData, setPowersData] = useState([]);
 
+    // handles when the user presses the expand button
     const handleExpandPhysical = (index) => {
         const newExpandedPhysical = [...expandedPhysical];
         newExpandedPhysical[index] = !newExpandedPhysical[index];
         setExpandedPhysical(newExpandedPhysical);
     };
 
+    // handles when the user presses the expand powers
     const handleExpandPowers = (index, heroid) => {
         const newExpandedPowers = [...expandedPowers];
         newExpandedPowers[index] = !newExpandedPowers[index];
         setExpandedPowers(newExpandedPowers);
     };
 
+    // use effect which is called every time search functions change
     useEffect(() => {
         fetch(`/heroes/heroSearch/${raceSearch !== "" ? raceSearch : "null"}/${nameSearch !== "" ? nameSearch : "null"}/${powerSearch !== "" ? powerSearch : "null"}/${publisherSearch !== "" ? publisherSearch : "null"}`)
             .then((res) => res.json())
@@ -36,6 +39,7 @@ function HeroResults() {
             });
     }, [raceSearch, nameSearch, powerSearch, publisherSearch]);
 
+    // useEffect to fill the array of powers
     useEffect(() => {
         async function fillArray() {
             await fetch(`/powers`)

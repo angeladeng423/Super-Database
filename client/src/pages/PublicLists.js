@@ -4,15 +4,16 @@ import { useEffect, useState } from 'react';
 import ListPopup from '../components/ListPopup';
 
 function PublicLists() {
+  // determine constants
   const [ addButtonPopup, setAddButtonPopup ] = useState()
   const [ publicLists, setPublicList ] = useState([])
   const [currentList, setCurrentList] = useState(null)
 
   useEffect(() =>{
     getLists()
-    console.log("test", publicLists)
   }, [])
 
+  // gets all public lists based on recency
   async function getLists(){
     await fetch('/heroes/list/recent')
     .then((res) => res.json())
@@ -21,6 +22,7 @@ function PublicLists() {
     });
   }
 
+  // determines the selected list
   async function selectedList(selected, token) {
 
     await fetch('/heroes/return-list', {

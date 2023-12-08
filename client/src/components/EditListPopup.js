@@ -19,6 +19,8 @@ function EditListPopup(props){
         setListOfHeroes(props.heroes)
     }, [props])
 
+    // defining constants
+
     const originalListName = props.listName
     const [newListName, setNewListName] = useState("")
     const [description, setDescription] = useState("")
@@ -27,13 +29,16 @@ function EditListPopup(props){
     const [currentTime, setCurrentTime] = useState(new Date());
     const [visibleStatus, setVisibleStatus] = useState('Private');
 
+    // calls backend to save edits for a list
     async function saveEditList(){
         const token = localStorage.getItem('token')
 
+        // creates a new date
         setCurrentTime(new Date());
         const editedTime = currentTime.toLocaleString()
         const listContents = listOfHeroes.map((hero) => parseInt(hero.trim(), 10));
         
+        // input validation for lists
         for (let i = 0; i < listContents.length; i++) {
             const listContentAsInt = parseInt(listContents[i], 10);
         
@@ -43,6 +48,7 @@ function EditListPopup(props){
             }
         }
 
+        // fetch backend api
         await fetch ('/heroes/edit-list', {
             method: 'POST',
             headers: {
@@ -64,6 +70,7 @@ function EditListPopup(props){
           })
     }
 
+    // manages the checkbox to determine whether list is public or private
     function handleCheckboxChange(){
         setVisibility(!visibility);
         setVisibleStatus(!visibility ? 'Public' : 'Private');

@@ -8,6 +8,7 @@ import PublicLists from './pages/PublicLists';
 import EmailVerification from './pages/EmailVerification'
 import AdminPriv from './pages/AdminPriv';
 import ListManagement from './pages/ListManagement'
+import Policy from './pages/Policy';
 
 import {
   createBrowserRouter,
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
   {
     path: "/list-manage",
     element: <ListManagement/>
+  },
+  {
+    path: "/policy",
+    element: <Policy/>
   }
 ]);
 

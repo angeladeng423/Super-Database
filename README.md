@@ -100,7 +100,7 @@
     - not able to add entry that doesn't exist [x]
     - saved changes appear on all applicable views of list [x]
     - updated date is changed to time of saving modified info [x]
-    - non public lists are sorted to reflect modification time
+    - non public lists are sorted to reflect modification time [x]
     - user cannot edit a list that the user does not own [x]
 4. delete a list
     - select list for deletion [x]
@@ -109,9 +109,9 @@
     - if confirmation declined, list is not deleted [x]
     - user cannot delete a list user does not own [x]
 5. add review to list
-    - select any public list for adding review
-    - enter rating for selected list
-    - enter comment for selected list
+    - select any public list for adding review [x]
+    - enter rating for selected list [x]
+    - enter comment for selected list [x]
     - mechanism to save review w/ confirmation
     - username & creation date are saved along w/ review
 

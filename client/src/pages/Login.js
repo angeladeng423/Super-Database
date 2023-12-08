@@ -79,6 +79,7 @@ function Login() {
                     }} id = "submit-btn">login!</button>
                     <p id = "link-to-new-acc" onClick = {navTo}> create a new account!</p>
                     {showResend ? <p id = "resend-btn" onClick = {resend}>resend verification!</p> : ""}
+                    <p onClick = {() => navigate('/policy')}>click to view our policies</p>
                 </div>
             </div>
 

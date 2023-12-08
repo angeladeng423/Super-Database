@@ -1,8 +1,11 @@
 import React from "react";
 import './ListPopup.css';
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function ListPopup(props) {
+    const navigate = useNavigate()
+
     const [buttonClick, setButtonClick] = useState(false)
     const [showHeroClick, setShowHeroClick] = useState(false)
     const [reviewRating, setReviewRating] = useState("")
@@ -153,10 +156,12 @@ function ListPopup(props) {
               <br/><button onClick = {() =>
             {
                 if(reviewRating <= 5){
-                    createReview()
-                    setReviewComment("")
-                    setReviewRating("")
-                    props.setTrigger(false)
+                    if(window.confirm("Create review?")){
+                        createReview()
+                        setReviewComment("")
+                        setReviewRating("")
+                        props.setTrigger(false)
+                    }
                 } else {
                     alert("Please enter a valid review rating.")
                 }

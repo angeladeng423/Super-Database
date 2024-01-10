@@ -1,5 +1,3 @@
-# SE3316 Lab 4
-
 # Objective
 1. Client application w/ ReSTfull web API
 2. Implement authentication protocol w/ different levels of functionality based on authentication
